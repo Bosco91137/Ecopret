@@ -1,0 +1,2103 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ecoprêt Cameroun - Prêts rapides en ligne</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Animate.css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+     <!-- Particles.js -->
+<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+  
+    <!-- Custom Tailwind config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#2c786c',
+                        secondary: '#f8b400',
+                        dark: '#004445',
+                        light: '#faf5e4',
+                        cameroonGreen: '#007a5e',
+                        cameroonRed: '#ce1126',
+                        cameroonYellow: '#fcd116',
+                    },
+                    animation: {
+                        'float': 'float 3s ease-in-out infinite',
+                        'pulse-slow': 'pulse 6s infinite',
+                        'fade-in': 'fadeIn 1s ease-in',
+                        'slide-up': 'slideUp 0.5s ease-out',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        },
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        slideUp: {
+                            '0%': { transform: 'translateY(20px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom styles */
+        .nav-tab.active {
+            border-bottom: 3px solid #f8b400;
+            color: #2c786c;
+            font-weight: 600;
+        }
+        .nav-tab:not(.active) {
+            color: #666;
+        }
+        .hero-section {
+            background: linear-gradient(rgba(0, 122, 94, 0.9), rgba(0, 122, 94, 0.8)), 
+                        url('https://images.unsplash.com/photo-1600880292089-90a7e086ee0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+        }
+        .testimonial-card {
+            background: white;
+            border-left: 4px solid #2c786c;
+        }
+        .loan-card {
+            transition: all 0.3s ease;
+            border: 1px solid #e2e8f0;
+        }
+        .loan-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            border-color: #2c786c;
+        }
+        .whatsapp-btn {
+            transition: all 0.3s ease;
+        }
+        .whatsapp-btn:hover {
+            transform: scale(1.1);
+        }
+        .sticky-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 50;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+        }
+        .page {
+            display: none;
+        }
+        .page.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        .auth-form {
+            display: none;
+        }
+        .auth-form.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        .form-step {
+            display: none;
+        }
+        .form-step.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        .upload-area {
+            border: 2px dashed #cbd5e0;
+            transition: all 0.3s ease;
+        }
+        .upload-area:hover {
+            border-color: #2c786c;
+            background: rgba(44, 120, 108, 0.05);
+        }
+        .status-pending {
+            background: #fff3cd;
+            color: #856404;
+        }
+        .status-approved {
+            background: #d4edda;
+            color: #155724;
+        }
+        .status-rejected {
+            background: #f8d7da;
+            color: #721c24;
+        }
+        .divider {
+            position: relative;
+            text-align: center;
+        }
+        .divider::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: #e2e8f0;
+            z-index: 1;
+        }
+        .divider span {
+            position: relative;
+            display: inline-block;
+            padding: 0 15px;
+            background: white;
+            z-index: 2;
+            color: #718096;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+           /* Particle Animation */
+    #particles-js {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        background-color: transparent;
+        background-image: none;
+    }
+    
+    .particles-container {
+        position: relative;
+    }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans">
+ <!-- WhatsApp Floating Button -->
+<a href="https://wa.me/237681540232" class="fixed bottom-20 right-6 bg-green-500 text-white w-14 h-14 rounded-full flex items-center justify-center text-2xl shadow-lg whatsapp-btn z-50" target="_blank">
+    <i class="fab fa-whatsapp"></i>
+</a>
+ <header class="bg-cameroonGreen text-white sticky top-0 z-40 transition-all duration-300">
+    <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+        <div class="flex items-center">
+            <i class="fas fa-leaf text-2xl mr-2"></i>
+            <h1 class="text-xl font-bold">Ecoprêt Cameroun</h1>
+        </div>
+        
+        <div class="flex items-center space-x-4">
+            <!-- Historique des transactions button (hidden by default) -->
+            <button 
+                class="hidden px-4 py-2 rounded-md bg-white text-cameroonGreen font-medium flex items-center hover:bg-gray-100 transition-colors"
+                id="transactionHistoryBtn"
+                data-page="dashboard">
+                <i class="fas fa-history mr-2"></i>
+                <span class="hidden md:inline">Historique des transactions</span>
+            </button>
+            
+            <!-- Mobile Auth Buttons (shown by default) -->
+            <div class="flex space-x-2" id="mobileAuthButtons">
+                <button class="p-2 text-white" id="mobileLoginBtn">
+                    <i class="fas fa-sign-in-alt"></i>
+                </button>
+                <button class="p-2 text-white" id="mobileRegisterBtn">
+                    <i class="fas fa-user-plus"></i>
+                </button>
+            </div>
+            
+            <!-- Profile Button (hidden by default) -->
+            <div class="hidden items-center space-x-2" id="profileButton">
+                <button class="px-4 py-2 rounded-md bg-white text-cameroonGreen font-medium flex items-center" id="profileBtn">
+                    <i class="fas fa-user-circle mr-2"></i>
+                    <span id="profileName" class="hidden md:inline"></span>
+                </button>
+            </div>
+        </div>
+    </div>
+</header>
+        
+        <!-- Profile Button (shown when logged in) -->
+        <div class="hidden items-center space-x-2" id="profileButton">
+            <button class="px-4 py-2 rounded-md bg-white text-cameroonGreen font-medium flex items-center" id="profileBtn">
+                <i class="fas fa-user-circle mr-2"></i>
+                <span id="profileName" class="hidden md:inline"></span>
+            </button>
+        </div>
+    </div>
+</header>
+
+    <!-- Main Content -->
+    <main class="pb-20"> <!-- Padding bottom for sticky nav -->
+        <!-- Accueil Page -->
+        <div id="accueil" class="page active animate__animated animate__fadeIn">
+            <!-- Hero Section -->
+            <section class="hero-section text-white py-16 md:py-24">
+                <div class="container mx-auto px-4">
+                    <div class="flex flex-col md:flex-row items-center">
+                        <div class="md:w-1/2 mb-8 md:mb-0 animate__animated animate__fadeInLeft">
+                            <h1 class="text-3xl md:text-5xl font-bold mb-4">Obtenez un prêt de 50 000 à 1 000 000 FCFA en quelques clics !</h1>
+                            <p class="text-xl mb-6">Service rapide avec un taux d'intérêt de seulement 4.5% et remboursable en 6 mois maximum.</p>
+                            <div class="flex flex-wrap gap-4">
+                                <a href="#" class="btn btn-primary pulse bg-cameroonYellow text-cameroonGreen px-6 py-3 rounded-md font-bold" data-page="pret">Demander un prêt</a>
+                                <a href="#how-it-works" class="btn btn-outline-light border-2 border-white text-white px-6 py-3 rounded-md font-bold">
+                                    En savoir plus <i class="fas fa-arrow-down ml-2"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="md:w-1/2 flex justify-center animate__animated animate__fadeInRight">
+                            <img src="https://cdn.pixabay.com/photo/2017/09/07/08/54/money-2724241_1280.jpg" 
+                                 class="w-full max-w-md rounded-lg shadow-xl animate-float" 
+                                 alt="Billets de banque">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Divider -->
+            <div class="container mx-auto px-4">
+                <div class="border-b-2 border-cameroonGreen opacity-20 my-8"></div>
+            </div>
+
+            <!-- Features Section -->
+            <section class="py-12 bg-white">
+                <div class="container mx-auto px-4">
+                    <h2 class="text-3xl font-bold text-center text-cameroonGreen mb-12">Pourquoi choisir Ecoprêt ?</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                        <div class="bg-gray-50 p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 animate__animated animate__fadeInUp">
+                            <div class="w-16 h-16 bg-cameroonGreen rounded-full flex items-center justify-center text-white text-2xl mb-4 mx-auto">
+                                <i class="fas fa-bolt"></i>
+                            </div>
+                            <h3 class="text-xl font-semibold text-center mb-2">Rapide</h3>
+                            <p class="text-gray-600 text-center">Traitement en moins de 24h après paiement de la caution. Décision immédiate.</p>
+                        </div>
+                        <div class="bg-gray-50 p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 animate__animated animate__fadeInUp animate__delay-1s">
+                            <div class="w-16 h-16 bg-cameroonGreen rounded-full flex items-center justify-center text-white text-2xl mb-4 mx-auto">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <h3 class="text-xl font-semibold text-center mb-2">Sécurisé</h3>
+                            <p class="text-gray-600 text-center">Vos données sont cryptées selon les normes internationales de sécurité.</p>
+                        </div>
+                        <div class="bg-gray-50 p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 animate__animated animate__fadeInUp animate__delay-2s">
+                            <div class="w-16 h-16 bg-cameroonGreen rounded-full flex items-center justify-center text-white text-2xl mb-4 mx-auto">
+                                <i class="fas fa-percent"></i>
+                            </div>
+                            <h3 class="text-xl font-semibold text-center mb-2">Taux bas</h3>
+                            <p class="text-gray-600 text-center">Seulement 4.5% de taux d'intérêt, sans frais cachés ni surprises.</p>
+                        </div>
+                        <div class="bg-gray-50 p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 animate__animated animate__fadeInUp animate__delay-3s">
+                            <div class="w-16 h-16 bg-cameroonGreen rounded-full flex items-center justify-center text-white text-2xl mb-4 mx-auto">
+                                <i class="fas fa-headset"></i>
+                            </div>
+                            <h3 class="text-xl font-semibold text-center mb-2">Support 24/7</h3>
+                            <p class="text-gray-600 text-center">Notre équipe est disponible pour répondre à vos questions à tout moment.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- How It Works Section -->
+            <section id="how-it-works" class="py-12 bg-gray-100">
+                <div class="container mx-auto px-4">
+                    <h2 class="text-3xl font-bold text-center text-cameroonGreen mb-12">Comment ça marche ?</h2>
+                    <div class="relative">
+                        <div class="hidden lg:block absolute left-1/2 top-0 bottom-0 w-1 bg-cameroonGreen opacity-20 transform -translate-x-1/2"></div>
+                        
+                        <div class="space-y-8 lg:space-y-12">
+                            <!-- Step 1 -->
+                            <div class="relative lg:w-1/2 lg:pr-16 animate__animated animate__fadeInLeft">
+                                <div class="bg-white p-6 rounded-lg shadow-md">
+                                    <div class="flex items-center mb-4">
+                                        <div class="w-10 h-10 bg-cameroonGreen rounded-full flex items-center justify-center text-white font-bold mr-4">1</div>
+                                        <h3 class="text-xl font-semibold">Demande en ligne</h3>
+                                    </div>
+                                    <p class="text-gray-600">Remplissez notre formulaire simple en moins de 5 minutes. Aucun document compliqué requis.</p>
+                                </div>
+                            </div>
+                            
+                            <!-- Step 2 -->
+                            <div class="relative lg:w-1/2 lg:ml-auto lg:pl-16 animate__animated animate__fadeInRight animate__delay-1s">
+                                <div class="bg-white p-6 rounded-lg shadow-md">
+                                    <div class="flex items-center mb-4">
+                                        <div class="w-10 h-10 bg-cameroonGreen rounded-full flex items-center justify-center text-white font-bold mr-4">2</div>
+                                        <h3 class="text-xl font-semibold">Paiement de la caution</h3>
+                                    </div>
+                                    <p class="text-gray-600">Payez les frais de caution via Mobile Money pour valider votre demande.</p>
+                                </div>
+                            </div>
+                            
+                            <!-- Step 3 -->
+                            <div class="relative lg:w-1/2 lg:pr-16 animate__animated animate__fadeInLeft animate__delay-2s">
+                                <div class="bg-white p-6 rounded-lg shadow-md">
+                                    <div class="flex items-center mb-4">
+                                        <div class="w-10 h-10 bg-cameroonGreen rounded-full flex items-center justify-center text-white font-bold mr-4">3</div>
+                                        <h3 class="text-xl font-semibold">Validation rapide</h3>
+                                    </div>
+                                    <p class="text-gray-600">Notre équipe traite votre demande dans les 24h après paiement de la caution.</p>
+                                </div>
+                            </div>
+                            
+                            <!-- Step 4 -->
+                            <div class="relative lg:w-1/2 lg:ml-auto lg:pl-16 animate__animated animate__fadeInRight animate__delay-3s">
+                                <div class="bg-white p-6 rounded-lg shadow-md">
+                                    <div class="flex items-center mb-4">
+                                        <div class="w-10 h-10 bg-cameroonGreen rounded-full flex items-center justify-center text-white font-bold mr-4">4</div>
+                                        <h3 class="text-xl font-semibold">Réception des fonds</h3>
+                                    </div>
+                                    <p class="text-gray-600">Une fois approuvé, l'argent est transféré directement sur votre compte mobile money.</p>
+                                    <div class="mt-4 flex justify-center space-x-6">
+                                        <img src="https://cdn.uc.assets.prezly.com/2854c410-0abc-4e0d-9ebe-307c85986c8b/-/inline/no/Orange_Money_Logo_Landscape_Black_RGB.png" 
+                                             alt="Orange Money" class="h-8 opacity-70 hover:opacity-100 transition-opacity">
+                                        <img src="https://tse2.mm.bing.net/th/id/OIP.zHmenbJ6iC8x6Poo7cZn7wHaEK?r=0&rs=1&pid=ImgDetMain" 
+                                             alt="MTN Mobile Money" class="h-8 opacity-70 hover:opacity-100 transition-opacity">
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Step 5 -->
+                            <div class="relative lg:w-1/2 lg:pr-16 animate__animated animate__fadeInLeft animate__delay-4s">
+                                <div class="bg-white p-6 rounded-lg shadow-md">
+                                    <div class="flex items-center mb-4">
+                                        <div class="w-10 h-10 bg-cameroonGreen rounded-full flex items-center justify-center text-white font-bold mr-4">5</div>
+                                        <h3 class="text-xl font-semibold">Remboursement flexible</h3>
+                                    </div>
+                                    <p class="text-gray-600">Choisissez votre plan de remboursement (7, 14, 30 ou 60 jours) selon votre convenance.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- FAQ Section -->
+            <section class="py-12 bg-white">
+                <div class="container mx-auto px-4">
+                    <h2 class="text-3xl font-bold text-center text-cameroonGreen mb-12">Foire aux questions</h2>
+                    <div class="max-w-3xl mx-auto">
+                        <div class="space-y-4">
+                            <!-- FAQ Item 1 -->
+                            <div class="border border-gray-200 rounded-lg overflow-hidden animate__animated animate__fadeIn">
+                                <button class="faq-question w-full px-6 py-4 text-left font-medium bg-gray-50 hover:bg-gray-100 transition-colors">
+                                    Quel est le délai de traitement des demandes ?
+                                    <i class="fas fa-chevron-down float-right transform transition-transform"></i>
+                                </button>
+                                <div class="faq-answer px-6 py-4 bg-white hidden">
+                                    <p class="text-gray-600">Les demandes sont traitées dans les 24 heures suivant le paiement de la caution. Une fois approuvé, le transfert des fonds est immédiat.</p>
+                                </div>
+                            </div>
+                            
+                            <!-- FAQ Item 2 -->
+                            <div class="border border-gray-200 rounded-lg overflow-hidden animate__animated animate__fadeIn animate__delay-1s">
+                                <button class="faq-question w-full px-6 py-4 text-left font-medium bg-gray-50 hover:bg-gray-100 transition-colors">
+                                    Quels sont les documents requis ?
+                                    <i class="fas fa-chevron-down float-right transform transition-transform"></i>
+                                </button>
+                                <div class="faq-answer px-6 py-4 bg-white hidden">
+                                    <p class="text-gray-600">Vous aurez besoin d'une pièce d'identité valide (CNI, passeport ou permis de conduire) et d'un numéro de téléphone actif avec un compte Mobile Money.</p>
+                                </div>
+                            </div>
+                            
+                            <!-- FAQ Item 3 -->
+                            <div class="border border-gray-200 rounded-lg overflow-hidden animate__animated animate__fadeIn animate__delay-2s">
+                                <button class="faq-question w-full px-6 py-4 text-left font-medium bg-gray-50 hover:bg-gray-100 transition-colors">
+                                    Comment se fait le remboursement ?
+                                    <i class="fas fa-chevron-down float-right transform transition-transform"></i>
+                                </button>
+                                <div class="faq-answer px-6 py-4 bg-white hidden">
+                                    <p class="text-gray-600">Le remboursement se fait via Mobile Money (Orange Money ou MTN Mobile Money) selon le plan que vous aurez choisi (7, 14, 30 ou 60 jours).</p>
+                                </div>
+                            </div>
+                            
+                            <!-- FAQ Item 4 -->
+                            <div class="border border-gray-200 rounded-lg overflow-hidden animate__animated animate__fadeIn animate__delay-3s">
+                                <button class="faq-question w-full px-6 py-4 text-left font-medium bg-gray-50 hover:bg-gray-100 transition-colors">
+                                    Que se passe-t-il en cas de retard de remboursement ?
+                                    <i class="fas fa-chevron-down float-right transform transition-transform"></i>
+                                </button>
+                                <div class="faq-answer px-6 py-4 bg-white hidden">
+                                    <p class="text-gray-600">En cas de retard, des pénalités de 1% par jour seront appliquées. Après 30 jours de retard, le dossier est transmis à un service de recouvrement.</p>
+                                </div>
+                            </div>
+                            
+                            <!-- FAQ Item 5 -->
+                            <div class="border border-gray-200 rounded-lg overflow-hidden animate__animated animate__fadeIn animate__delay-4s">
+                                <button class="faq-question w-full px-6 py-4 text-left font-medium bg-gray-50 hover:bg-gray-100 transition-colors">
+                                    Puis-je rembourser par anticipation ?
+                                    <i class="fas fa-chevron-down float-right transform transition-transform"></i>
+                                </button>
+                                <div class="faq-answer px-6 py-4 bg-white hidden">
+                                    <p class="text-gray-600">Oui, vous pouvez rembourser votre prêt à tout moment sans frais supplémentaires. Cela peut même réduire le montant total des intérêts à payer.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Stats Section -->
+            <section class="py-12 bg-cameroonGreen text-white">
+                <div class="container mx-auto px-4">
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                        <div class="text-center animate__animated animate__fadeIn">
+                            <div class="text-4xl font-bold mb-2">15K+</div>
+                            <div class="text-lg">Clients satisfaits</div>
+                        </div>
+                        <div class="text-center animate__animated animate__fadeIn animate__delay-1s">
+                            <div class="text-4xl font-bold mb-2">24h</div>
+                            <div class="text-lg">Délai moyen</div>
+                        </div>
+                        <div class="text-center animate__animated animate__fadeIn animate__delay-2s">
+                            <div class="text-4xl font-bold mb-2">98%</div>
+                            <div class="text-lg">Taux d'approbation</div>
+                        </div>
+                        <div class="text-center animate__animated animate__fadeIn animate__delay-3s">
+                            <div class="text-4xl font-bold mb-2">4.5%</div>
+                            <div class="text-lg">Taux d'intérêt</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Testimonials Section -->
+            <section class="py-12 bg-gray-100">
+                <div class="container mx-auto px-4">
+                    <h2 class="text-3xl font-bold text-center text-cameroonGreen mb-12">Témoignages de nos clients</h2>
+                    
+                    <div class="testimonial-slider relative">
+                        <div class="overflow-hidden">
+                            <div class="flex transition-transform duration-300 ease-in-out" id="testimonial-track">
+                                <!-- Testimonial 1 -->
+                                <div class="w-full md:w-1/2 lg:w-1/3 px-4 flex-shrink-0">
+                                    <div class="testimonial-card p-6 mb-8 h-full">
+                                        <p class="italic mb-4">"Grâce à Ecoprêt, j'ai pu financer mon petit commerce à Douala. Le transfert sur mon Orange Money a pris moins d'une heure après approbation !"</p>
+                                        <div class="font-semibold">— Aminata N., Douala</div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Testimonial 2 -->
+                                <div class="w-full md:w-1/2 lg:w-1/3 px-4 flex-shrink-0">
+                                    <div class="testimonial-card p-6 mb-8 h-full">
+                                        <p class="italic mb-4">"Service exceptionnel ! J'ai obtenu 100 000 FCFA pour payer les frais scolaires de mes enfants à Yaoundé. Remboursement très flexible."</p>
+                                        <div class="font-semibold">— Jean-Paul M., Yaoundé</div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Testimonial 3 -->
+                                <div class="w-full md:w-1/2 lg:w-1/3 px-4 flex-shrink-0">
+                                    <div class="testimonial-card p-6 mb-8 h-full">
+                                        <p class="italic mb-4">"À Bamenda, Ecoprêt m'a sauvé lors d'une urgence médicale. Simple, rapide et sans paperasse. Je recommande à tous !"</p>
+                                        <div class="font-semibold">— Chantal N., Bamenda</div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Testimonial 4 -->
+                                <div class="w-full md:w-1/2 lg:w-1/3 px-4 flex-shrink-0">
+                                    <div class="testimonial-card p-6 mb-8 h-full">
+                                        <p class="italic mb-4">"J'ai pu développer mon atelier de couture grâce à un prêt de 200 000 FCFA. Le processus est tellement simple et rapide."</p>
+                                        <div class="font-semibold">— Martine K., Bafoussam</div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Testimonial 5 -->
+                                <div class="w-full md:w-1/2 lg:w-1/3 px-4 flex-shrink-0">
+                                    <div class="testimonial-card p-6 mb-8 h-full">
+                                        <p class="italic mb-4">"En tant qu'étudiant à Dschang, Ecoprêt m'a aidé à payer mon loyer quand j'étais dans une situation difficile. Merci !"</p>
+                                        <div class="font-semibold">— Arnaud T., Dschang</div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Testimonial 6 -->
+                                <div class="w-full md:w-1/2 lg:w-1/3 px-4 flex-shrink-0">
+                                    <div class="testimonial-card p-6 mb-8 h-full">
+                                        <p class="italic mb-4">"J'ai remboursé mon prêt de 500 000 FCFA en 4 mois au lieu de 6. Les intérêts ont été réduits en conséquence. Très satisfait."</p>
+                                        <div class="font-semibold">— Samuel D., Garoua</div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Testimonial 7 -->
+                                <div class="w-full md:w-1/2 lg:w-1/3 px-4 flex-shrink-0">
+                                    <div class="testimonial-card p-6 mb-8 h-full">
+                                        <p class="italic mb-4">"Le meilleur service de prêt en ligne au Cameroun. J'ai obtenu 800 000 FCFA pour mon commerce en moins de 24h."</p>
+                                        <div class="font-semibold">— Fatou B., Maroua</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="flex justify-center mt-8 space-x-2">
+                            <button class="testimonial-prev w-10 h-10 rounded-full bg-white border border-gray-300 flex items-center justify-center hover:bg-gray-100">
+                                <i class="fas fa-chevron-left"></i>
+                            </button>
+                            <button class="testimonial-next w-10 h-10 rounded-full bg-white border border-gray-300 flex items-center justify-center hover:bg-gray-100">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Payment Methods Section -->
+            <section class="py-12 bg-white">
+                <div class="container mx-auto px-4">
+                    <h2 class="text-3xl font-bold text-center text-cameroonGreen mb-8">Moyens de paiement acceptés</h2>
+                    <div class="flex flex-wrap justify-center items-center gap-8 mb-8">
+                        <img src="https://cdn.uc.assets.prezly.com/2854c410-0abc-4e0d-9ebe-307c85986c8b/-/inline/no/Orange_Money_Logo_Landscape_Black_RGB.png" 
+                             alt="Orange Money" class="h-10 opacity-70 hover:opacity-100 transition-opacity">
+                        <img src="https://tse2.mm.bing.net/th/id/OIP.zHmenbJ6iC8x6Poo7cZn7wHaEK?r=0&rs=1&pid=ImgDetMain" 
+                             alt="MTN Mobile Money" class="h-10 opacity-70 hover:opacity-100 transition-opacity">
+                        <img src="https://th.bing.com/th/id/R.8b66f21025c6ee1736b4a9f6e10c5622?rik=zkqe9IQCBi5tXA&pid=ImgRaw&r=0" 
+                             alt="Express Union Mobile" class="h-10 opacity-70 hover:opacity-100 transition-opacity">
+                        <img src="https://tse4.mm.bing.net/th/id/OIP.DBLLr8E_-wrH6RLGpsbkNAHaD4?r=0&rs=1&pid=ImgDetMain" 
+                             alt="Ecobank Mobile" class="h-10 opacity-70 hover:opacity-100 transition-opacity">
+                    </div>
+                    <p class="text-center text-gray-600 max-w-2xl mx-auto">Recevez votre prêt directement sur votre compte mobile money et remboursez facilement par les mêmes canaux.</p>
+                </div>
+            </section>
+
+            <!-- Call to Action -->
+            <section class="py-12 bg-cameroonGreen text-white">
+                <div class="container mx-auto px-4">
+                    <div class="flex flex-col md:flex-row justify-between items-center">
+                        <div class="md:w-2/3 mb-6 md:mb-0">
+                            <h2 class="text-2xl md:text-3xl font-bold mb-2">Prêt à obtenir votre prêt ?</h2>
+                            <p class="text-lg">Commencez maintenant et obtenez les fonds sur votre compte dans les prochaines 24 heures.</p>
+                        </div>
+                        <div class="md:w-1/3 text-center md:text-right">
+                            <a href="#" class="inline-block bg-cameroonYellow text-cameroonGreen font-bold px-6 py-3 rounded-md hover:bg-yellow-500 transition-colors" data-page="pret">
+                                Demander maintenant <i class="fas fa-arrow-right ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Conditions Page -->
+        <div id="conditions" class="page">
+            <div class="particles-container">
+        <div id="particles-js"></div>
+            <section class="py-12">
+                <div class="container mx-auto px-4">
+                    <div class="max-w-4xl mx-auto">
+                        <div class="text-center mb-12">
+                            <h1 class="text-3xl md:text-4xl font-bold text-cameroonGreen mb-4">Conditions de prêt</h1>
+                            <p class="text-xl text-gray-600">Tout ce que vous devez savoir avant de faire une demande de prêt</p>
+                        </div>
+                        
+                        <div class="bg-white rounded-lg shadow-md p-6 md:p-8 animate__animated animate__fadeIn">
+                            <div class="mb-8">
+                                <h2 class="text-2xl font-bold text-cameroonGreen mb-4">Nos conditions générales</h2>
+                                
+                                <div class="mb-6">
+                                    <h3 class="text-xl font-semibold text-cameroonGreen mb-3">Éligibilité</h3>
+                                    <ul class="list-disc pl-5 space-y-2 text-gray-700">
+                                        <li>Être âgé de 21 à 65 ans</li>
+                                        <li>Résider au Cameroun</li>
+                                        <li>Posséder un numéro de téléphone actif</li>
+                                        <li>Avoir une pièce d'identité valide (CNI, passeport ou permis de conduire)</li>
+                                        <li>Avoir un compte mobile money actif (Orange Money, MTN Mobile Money, etc.)</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="mb-6">
+                                    <h3 class="text-xl font-semibold text-cameroonGreen mb-3">Montants et durées</h3>
+                                    <div class="overflow-x-auto">
+                                        <table class="min-w-full bg-white border border-gray-200">
+                                            <thead class="bg-gray-50">
+                                                <tr>
+                                                    <th class="px-4 py-2 border text-left">Montant du prêt</th>
+                                                    <th class="px-4 py-2 border text-left">Frais de caution</th>
+                                                    <th class="px-4 py-2 border text-left">Durée de remboursement</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td class="px-4 py-2 border">50 000 FCFA</td>
+                                                    <td class="px-4 py-2 border">5 000 FCFA</td>
+                                                    <td class="px-4 py-2 border">7, 14, 30 ou 60 jours</td>
+                                                </tr>
+                                                <tr class="bg-gray-50">
+                                                    <td class="px-4 py-2 border">100 000 FCFA</td>
+                                                    <td class="px-4 py-2 border">10 000 FCFA</td>
+                                                    <td class="px-4 py-2 border">7, 14, 30 ou 60 jours</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="px-4 py-2 border">200 000 FCFA</td>
+                                                    <td class="px-4 py-2 border">20 000 FCFA</td>
+                                                    <td class="px-4 py-2 border">30, 60 ou 90 jours</td>
+                                                </tr>
+                                                <tr class="bg-gray-50">
+                                                    <td class="px-4 py-2 border">400 000 FCFA</td>
+                                                    <td class="px-4 py-2 border">35 000 FCFA</td>
+                                                    <td class="px-4 py-2 border">30, 60 ou 365  jours</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="px-4 py-2 border">500 000 FCFA</td>
+                                                    <td class="px-4 py-2 border">40 000 FCFA</td>
+                                                    <td class="px-4 py-2 border">30, 60 ou 365  jours</td>
+                                                </tr>
+                                                <tr class="bg-gray-50">
+                                                    <td class="px-4 py-2 border">800 000 FCFA</td>
+                                                    <td class="px-4 py-2 border">60 000 FCFA</td>
+                                                    <td class="px-4 py-2 border">30, 60 ou 365  jours</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="px-4 py-2 border">1 000 000 FCFA</td>
+                                                    <td class="px-4 py-2 border">80 000 FCFA</td>
+                                                    <td class="px-4 py-2 border">30, 60 ou 365  jours</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <p class="mt-4 text-gray-600">Taux d'intérêt : 4.5% du montant emprunté</p>
+                                </div>
+                                
+                                <div class="mb-6">
+                                    <h3 class="text-xl font-semibold text-cameroonGreen mb-3">Processus de demande</h3>
+                                    <ul class="list-disc pl-5 space-y-2 text-gray-700">
+                                        <li>Remplissez le formulaire de demande en ligne</li>
+                                        <li>Fournissez les informations requises (identité, coordonnées)</li>
+                                        <li>Payez les frais de caution via mobile money</li>
+                                        <li>Validation de votre demande sous 24 heures</li>
+                                        <li>Transfert des fonds sur votre compte mobile money après approbation</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="mb-6">
+                                    <h3 class="text-xl font-semibold text-cameroonGreen mb-3">Remboursement</h3>
+                                    <ul class="list-disc pl-5 space-y-2 text-gray-700">
+                                        <li>Le remboursement se fait via mobile money</li>
+                                        <li>Aucun frais supplémentaire pour le remboursement anticipé</li>
+                                        <li>En cas de retard, des pénalités de 1% par jour seront appliquées</li>
+                                        <li>Après 30 jours de retard, le dossier sera transmis à un service de recouvrement</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-blue-50 border-l-4 border-blue-400 p-4 mb-8">
+                                <div class="flex">
+                                    <div class="flex-shrink-0">
+                                        <i class="fas fa-info-circle text-blue-400 text-xl"></i>
+                                    </div>
+                                    <div class="ml-3">
+                                        <h4 class="text-sm font-medium text-blue-800">Important</h4>
+                                        <p class="text-sm text-blue-700 mt-1">En soumettant une demande de prêt, vous acceptez nos conditions générales et notre politique de confidentialité.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="text-center">
+                                <a href="#" class="inline-block bg-cameroonGreen text-white font-bold px-6 py-3 rounded-md hover:bg-green-700 transition-colors" data-page="pret">
+                                    Faire une demande
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+             </div>
+        </div>
+
+        <!-- Pret Page -->
+        <div id="pret" class="page">
+            <section class="py-12">
+                <div class="container mx-auto px-4">
+                    <!-- Login required message (initially hidden) -->
+                    <div id="loginRequired" class="bg-white rounded-lg shadow-md p-8 text-center max-w-2xl mx-auto" style="display: none;">
+                        <i class="fas fa-lock text-5xl text-cameroonGreen mb-4"></i>
+                        <h2 class="text-2xl font-bold text-cameroonGreen mb-2">Connexion requise</h2>
+                        <p class="text-gray-600 mb-6">Vous devez être connecté pour demander un prêt</p>
+                        <a class="inline-block bg-cameroonGreen text-white font-bold px-6 py-3 rounded-md hover:bg-green-700 transition-colors" >
+                            veuillez vous connecter
+                        </a>
+                        <p class="mt-4 text-gray-600">Pas encore de compte? <a href="#" class="switch-tab text-cameroonGreen font-medium" data-tab="register">S'inscrire</a></p>
+                    </div>
+                    
+                    <!-- Loan offers (initially hidden) -->
+                    <div id="loanOffers">
+                        <div class="text-center mb-12">
+                            <h1 class="text-3xl md:text-4xl font-bold text-cameroonGreen mb-2">Nos offres de prêt</h1>
+                            <p class="text-xl text-gray-600">Choisissez le montant qui correspond à vos besoins</p>
+                        </div>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            <!-- Loan 50,000 -->
+                            <div class="loan-card rounded-lg p-6 text-center" data-amount="50000" data-fee="5000">
+                                <i class="fas fa-money-bill-wave text-4xl text-cameroonGreen mb-4"></i>
+                                <div class="text-2xl font-bold text-cameroonGreen mb-2">50 000 FCFA</div>
+                                <div class="text-cameroonYellow font-semibold mb-3">Frais de caution: 5 000 FCFA</div>
+                                <p class="text-gray-600 mb-4">Remboursement en 7, 14, 30 ou 60 jours</p>
+                                <button class="btn-select-loan w-full bg-cameroonGreen text-white py-2 rounded-md hover:bg-green-700 transition-colors">
+                                    Choisir cette offre
+                                </button>
+                            </div>
+                            
+                            <!-- Loan 100,000 -->
+                            <div class="loan-card rounded-lg p-6 text-center" data-amount="100000" data-fee="10000">
+                                <i class="fas fa-money-bill-wave text-4xl text-cameroonGreen mb-4"></i>
+                                <div class="text-2xl font-bold text-cameroonGreen mb-2">100 000 FCFA</div>
+                                <div class="text-cameroonYellow font-semibold mb-3">Frais de caution: 10 000 FCFA</div>
+                                <p class="text-gray-600 mb-4">Remboursement en 7, 14, 30 ou 60 jours</p>
+                                <button class="btn-select-loan w-full bg-cameroonGreen text-white py-2 rounded-md hover:bg-green-700 transition-colors">
+                                    Choisir cette offre
+                                </button>
+                            </div>
+                            
+                            <!-- Loan 200,000 -->
+                            <div class="loan-card rounded-lg p-6 text-center" data-amount="200000" data-fee="20000">
+                                <i class="fas fa-money-bill-wave text-4xl text-cameroonGreen mb-4"></i>
+                                <div class="text-2xl font-bold text-cameroonGreen mb-2">200 000 FCFA</div>
+                                <div class="text-cameroonYellow font-semibold mb-3">Frais de caution: 20 000 FCFA</div>
+                                <p class="text-gray-600 mb-4">Remboursement en 30, 60 ou 90jours</p>
+                                <button class="btn-select-loan w-full bg-cameroonGreen text-white py-2 rounded-md hover:bg-green-700 transition-colors">
+                                    Choisir cette offre
+                                </button>
+                            </div>
+                            
+                            <!-- Loan 400,000 -->
+                            <div class="loan-card rounded-lg p-6 text-center" data-amount="400000" data-fee="35000">
+                                <i class="fas fa-money-bill-wave text-4xl text-cameroonGreen mb-4"></i>
+                                <div class="text-2xl font-bold text-cameroonGreen mb-2">400 000 FCFA</div>
+                                <div class="text-cameroonYellow font-semibold mb-3">Frais de caution: 35 000 FCFA</div>
+                                <p class="text-gray-600 mb-4">Remboursement en 30, 60 ou 365  jours</p>
+                                <button class="btn-select-loan w-full bg-cameroonGreen text-white py-2 rounded-md hover:bg-green-700 transition-colors">
+                                    Choisir cette offre
+                                </button>
+                            </div>
+                            
+                            <!-- Loan 500,000 -->
+                            <div class="loan-card rounded-lg p-6 text-center" data-amount="500000" data-fee="40000">
+                                <i class="fas fa-money-bill-wave text-4xl text-cameroonGreen mb-4"></i>
+                                <div class="text-2xl font-bold text-cameroonGreen mb-2">500 000 FCFA</div>
+                                <div class="text-cameroonYellow font-semibold mb-3">Frais de caution: 40 000 FCFA</div>
+                                <p class="text-gray-600 mb-4">Remboursement en 30, 60 ou 365  jours</p>
+                                <button class="btn-select-loan w-full bg-cameroonGreen text-white py-2 rounded-md hover:bg-green-700 transition-colors">
+                                    Choisir cette offre
+                                </button>
+                            </div>
+                            
+                            <!-- Loan 800,000 -->
+                            <div class="loan-card rounded-lg p-6 text-center" data-amount="800000" data-fee="60000">
+                                <i class="fas fa-money-bill-wave text-4xl text-cameroonGreen mb-4"></i>
+                                <div class="text-2xl font-bold text-cameroonGreen mb-2">800 000 FCFA</div>
+                                <div class="text-cameroonYellow font-semibold mb-3">Frais de caution: 60 000 FCFA</div>
+                                <p class="text-gray-600 mb-4">Remboursement en 30, 60 ou 365  jours</p>
+                                <button class="btn-select-loan w-full bg-cameroonGreen text-white py-2 rounded-md hover:bg-green-700 transition-colors">
+                                    Choisir cette offre
+                                </button>
+                            </div>
+                            
+                            <!-- Loan 1,000,000 -->
+                            <div class="loan-card rounded-lg p-6 text-center" data-amount="1000000" data-fee="80000">
+                                <i class="fas fa-money-bill-wave text-4xl text-cameroonGreen mb-4"></i>
+                                <div class="text-2xl font-bold text-cameroonGreen mb-2">1 000 000 FCFA</div>
+                                <div class="text-cameroonYellow font-semibold mb-3">Frais de caution: 80 000 FCFA</div>
+                                <p class="text-gray-600 mb-4">Remboursement en 30, 60 ou 365 jours</p>
+                                <button class="btn-select-loan w-full bg-cameroonGreen text-white py-2 rounded-md hover:bg-green-700 transition-colors">
+                                    Choisir cette offre
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- About Page -->
+        <div id="about" class="page">
+            <section class="py-12">
+                <div class="container mx-auto px-4">
+                    <div class="max-w-4xl mx-auto">
+                        <div class="text-center mb-12">
+                            <h1 class="text-3xl md:text-4xl font-bold text-cameroonGreen mb-4">À propos d'Ecoprêt Cameroun</h1>
+                            <p class="text-xl text-gray-600">Notre histoire, nos partenaires et nos engagements</p>
+                        </div>
+                        
+                        <div class="bg-white rounded-lg shadow-md p-6 md:p-8 animate__animated animate__fadeIn">
+                            <div class="mb-8">
+                                <h2 class="text-2xl font-bold text-cameroonGreen mb-4">Notre histoire</h2>
+                                <p class="text-gray-700 mb-4">Ecoprêt opère depuis 2017 comme l'un des premiers services de prêt en ligne au Cameroun. Fondée à Douala, notre plateforme a pour mission de faciliter l'accès au crédit pour tous les Camerounais, en particulier ceux qui sont exclus du système bancaire traditionnel.</p>
+                                <p class="text-gray-700">En 5 ans d'activité, nous avons octroyé plus de 15 000 prêts pour un montant total dépassant les 5 milliards de FCFA. Notre croissance repose sur la confiance de nos clients et notre engagement à fournir un service rapide, transparent et sécurisé.</p>
+                            </div>
+                            
+                            <div class="mb-8">
+                                <h2 class="text-2xl font-bold text-cameroonGreen mb-4">Nos partenaires</h2>
+                                <div class="grid grid-cols-2 md:grid-cols-3 gap-6">
+                                    <div class="flex items-center justify-center p-4 border border-gray-200 rounded-lg">
+                                        <img src="https://tse2.mm.bing.net/th/id/OIP.zHmenbJ6iC8x6Poo7cZn7wHaEK?r=0&rs=1&pid=ImgDetMain" alt="MTN" class="h-12">
+                                    </div>
+                                    <div class="flex items-center justify-center p-4 border border-gray-200 rounded-lg">
+                                        <img src="https://cdn.uc.assets.prezly.com/2854c410-0abc-4e0d-9ebe-307c85986c8b/-/inline/no/Orange_Money_Logo_Landscape_Black_RGB.png" alt="Orange" class="h-12">
+                                    </div>
+                                    <div class="flex items-center justify-center p-4 border border-gray-200 rounded-lg">
+                                        <img src="https://tse4.mm.bing.net/th/id/OIP.DBLLr8E_-wrH6RLGpsbkNAHaD4?r=0&rs=1&pid=ImgDetMain" alt="Ecobank" class="h-12">
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-8">
+                                <h2 class="text-2xl font-bold text-cameroonGreen mb-4">Cadre légal</h2>
+                                <p class="text-gray-700 mb-4">Ecoprêt opère dans le strict respect de la législation camerounaise sur les services financiers. Nos activités sont encadrées par les textes suivants :</p>
+                                <ul class="list-disc pl-5 space-y-2 text-gray-700 mb-4">
+                                    <li>Loi n°2010/012 du 21 décembre 2010 relative aux établissements de crédit</li>
+                                    <li>Règlement COBAC R-2014/01 sur la lutte contre le blanchiment d'argent</li>
+                                    <li>Loi n°2010/013 du 21 décembre 2010 relative à la protection des consommateurs</li>
+                                </ul>
+                                <p class="text-gray-700">En tant qu'emprunteur, vous bénéficiez de tous les droits prévus par ces textes, notamment le droit à l'information, le droit de rétractation et le droit au respect de votre vie privée.</p>
+                            </div>
+                            
+                            <div class="mb-8">
+                                <h2 class="text-2xl font-bold text-cameroonGreen mb-4">Licences et agréments</h2>
+                                <div class="bg-blue-50 border-l-4 border-blue-400 p-4">
+                                    <div class="flex">
+                                        <div class="flex-shrink-0">
+                                            <i class="fas fa-certificate text-blue-400 text-xl"></i>
+                                        </div>
+                                        <div class="ml-3">
+                                            <h4 class="text-sm font-medium text-blue-800">Licence financière</h4>
+                                            <p class="text-sm text-blue-700 mt-1">N° ABC-123456 délivrée par le Ministère des Finances du Cameroun</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="bg-blue-50 border-l-4 border-blue-400 p-4 mt-4">
+                                    <div class="flex">
+                                        <div class="flex-shrink-0">
+                                            <i class="fas fa-building text-blue-400 text-xl"></i>
+                                        </div>
+                                        <div class="ml-3">
+                                            <h4 class="text-sm font-medium text-blue-800">Immatriculation RCCM</h4>
+                                            <p class="text-sm text-blue-700 mt-1">N° CM2025B12345 - Registre du Commerce du Cameroun</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="text-center">
+                                <a href="#" class="inline-block bg-cameroonGreen text-white font-bold px-6 py-3 rounded-md hover:bg-green-700 transition-colors" data-page="pret">
+                                    Demander un prêt
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Dashboard Page -->
+        <div id="dashboard" class="page">
+            <section class="py-12">
+                <div class="container mx-auto px-4">
+                    <div class="mb-8">
+                        <h1 class="text-3xl md:text-4xl font-bold text-cameroonGreen mb-2">Mon tableau de bord</h1>
+                        <p class="text-xl text-gray-600">Bienvenue, <span id="welcomeName" class="font-semibold"></span></p>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                        <div class="bg-white rounded-lg shadow-md p-6">
+                            <h3 class="text-lg font-semibold text-cameroonGreen mb-2 flex items-center">
+                                <i class="fas fa-wallet mr-2"></i> Solde disponible
+                            </h3>
+                            <div class="text-2xl font-bold" id="availableBalance">0 FCFA</div>
+                        </div>
+                        <div class="bg-white rounded-lg shadow-md p-6">
+                            <h3 class="text-lg font-semibold text-cameroonGreen mb-2 flex items-center">
+                                <i class="fas fa-hand-holding-usd mr-2"></i> Prêt en cours
+                            </h3>
+                            <div class="text-2xl font-bold text-green-600" id="currentLoan">0 FCFA</div>
+                        </div>
+                        <div class="bg-white rounded-lg shadow-md p-6">
+                            <h3 class="text-lg font-semibold text-cameroonGreen mb-2 flex items-center">
+                                <i class="fas fa-clock mr-2"></i> Prochain remboursement
+                            </h3>
+                            <div class="text-2xl font-bold text-yellow-600" id="nextPayment">Aucun</div>
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                        <div class="lg:col-span-2">
+                            <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+                                <h3 class="text-lg font-semibold text-cameroonGreen mb-4 flex items-center">
+                                    <i class="fas fa-history mr-2"></i> Historique des prêts
+                                </h3>
+                                <div id="loanHistory">
+                                    <p class="text-gray-500">Aucun historique de prêt disponible</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+                                <h3 class="text-lg font-semibold text-cameroonGreen mb-4 flex items-center">
+                                    <i class="fas fa-bell mr-2"></i> Notifications
+                                </h3>
+                                <div id="notifications" class="space-y-4">
+                                    <div class="bg-blue-50 border-l-4 border-blue-400 p-3 rounded">
+                                        <p class="text-sm text-blue-700">Bienvenue sur votre tableau de bord Ecoprêt</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+                                <h3 class="text-lg font-semibold text-cameroonGreen mb-4 flex items-center">
+                                    <i class="fas fa-file-alt mr-2"></i> Conditions de prêt
+                                </h3>
+                                <p class="text-gray-600 mb-4">Consultez nos conditions générales avant de faire une nouvelle demande.</p>
+                                <a href="#" class="inline-block border border-cameroonGreen text-cameroonGreen font-medium px-4 py-2 rounded-md hover:bg-green-50 transition-colors" data-page="conditions">
+                                    Voir les conditions
+                                </a>
+                            </div>
+                            
+                            <div class="bg-white rounded-lg shadow-md p-6">
+                                <h3 class="text-lg font-semibold text-cameroonGreen mb-4 flex items-center">
+                                    <i class="fas fa-sign-out-alt mr-2"></i> Déconnexion
+                                </h3>
+                                <p class="text-gray-600 mb-4">Vous pouvez vous déconnecter de votre compte à tout moment.</p>
+                                <button id="logoutBtn" class="w-full border border-red-500 text-red-500 font-medium px-4 py-2 rounded-md hover:bg-red-50 transition-colors">
+                                    Se déconnecter
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Sticky Navigation -->
+    <nav class="sticky-nav bg-white py-3 md:py-4">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-around">
+                <a href="#" class="nav-tab active flex flex-col items-center text-xs md:text-sm" data-page="accueil">
+                    <i class="fas fa-home text-lg mb-1"></i>
+                    <span>Accueil</span>
+                </a>
+                <a href="#" class="nav-tab flex flex-col items-center text-xs md:text-sm" data-page="conditions">
+                    <i class="fas fa-file-contract text-lg mb-1"></i>
+                    <span>Conditions</span>
+                </a>
+                <a href="#" class="nav-tab flex flex-col items-center text-xs md:text-sm" data-page="pret">
+                    <i class="fas fa-hand-holding-usd text-lg mb-1"></i>
+                    <span>Demander</span>
+                </a>
+                <a href="#" class="nav-tab flex flex-col items-center text-xs md:text-sm" data-page="about">
+                    <i class="fas fa-info-circle text-lg mb-1"></i>
+                    <span>À propos</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Login Modal -->
+    <div class="modal fade fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden" id="loginModal">
+        <div class="bg-white rounded-lg w-full max-w-md mx-4">
+            <div class="p-6">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="text-xl font-bold text-cameroonGreen">Connexion</h3>
+                    <button class="close-modal text-gray-500 hover:text-gray-700">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                
+                <form id="loginFormModal" class="space-y-4">
+                    <div>
+                        <label for="loginEmailModal" class="block text-sm font-medium text-gray-700 mb-1">Adresse email</label>
+                        <input type="email" id="loginEmailModal" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-cameroonGreen" required>
+                    </div>
+                    
+                    <div>
+                        <label for="loginPasswordModal" class="block text-sm font-medium text-gray-700 mb-1">Mot de passe</label>
+                        <input type="password" id="loginPasswordModal" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-cameroonGreen" required>
+                    </div>
+                    
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center">
+                            <input type="checkbox" id="rememberMe" class="h-4 w-4 text-cameroonGreen focus:ring-cameroonGreen border-gray-300 rounded">
+                            <label for="rememberMe" class="ml-2 block text-sm text-gray-700">Se souvenir de moi</label>
+                        </div>
+                        <a href="#" class="text-sm text-cameroonGreen hover:underline">Mot de passe oublié?</a>
+                    </div>
+                    
+                    <button type="submit" class="w-full bg-cameroonGreen text-white py-2 rounded-md hover:bg-green-700 transition-colors">
+                        Se connecter
+                    </button>
+                </form>
+                
+                <div class="divider my-4">
+                    <span class="text-sm text-gray-500 bg-white px-2">Ou continuez avec</span>
+                </div>
+                
+                <div class="flex justify-center space-x-4">
+                    <button class="social-login flex items-center justify-center w-1/2 py-2 border border-gray-300 rounded-md hover:bg-gray-50">
+                        <i class="fab fa-google text-red-500 mr-2"></i>
+                        <span>Google</span>
+                    </button>
+                    <button class="social-login flex items-center justify-center w-1/2 py-2 border border-gray-300 rounded-md hover:bg-gray-50">
+                        <i class="fab fa-facebook-f text-blue-600 mr-2"></i>
+                        <span>Facebook</span>
+                    </button>
+                </div>
+                
+                <div class="mt-4 text-center text-sm">
+                    <p>Vous n'avez pas de compte? <a href="#" class="text-cameroonGreen font-medium hover:underline switch-to-register">S'inscrire</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div class="modal fade fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden" id="registerModal">
+        <div class="bg-white rounded-lg w-full max-w-md mx-4">
+            <div class="p-6">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="text-xl font-bold text-cameroonGreen">Créer un compte</h3>
+                    <button class="close-modal text-gray-500 hover:text-gray-700">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                
+                <form id="registerFormModal" class="space-y-4">
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label for="registerFirstName" class="block text-sm font-medium text-gray-700 mb-1">Prénom</label>
+                            <input type="text" id="registerFirstName" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-cameroonGreen" required>
+                        </div>
+                        <div>
+                            <label for="registerLastName" class="block text-sm font-medium text-gray-700 mb-1">Nom</label>
+                            <input type="text" id="registerLastName" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-cameroonGreen" required>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label for="registerEmail" class="block text-sm font-medium text-gray-700 mb-1">Adresse email</label>
+                        <input type="email" id="registerEmail" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-cameroonGreen" required>
+                    </div>
+                    
+                    <div>
+                        <label for="registerPhone" class="block text-sm font-medium text-gray-700 mb-1">Numéro de téléphone</label>
+                        <input type="tel" id="registerPhone" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-cameroonGreen" required>
+                    </div>
+                    
+                    <div>
+                        <label for="registerPassword" class="block text-sm font-medium text-gray-700 mb-1">Mot de passe</label>
+                        <input type="password" id="registerPassword" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-cameroonGreen" required>
+                    </div>
+                    
+                    <div>
+                        <label for="registerConfirmPassword" class="block text-sm font-medium text-gray-700 mb-1">Confirmer le mot de passe</label>
+                        <input type="password" id="registerConfirmPassword" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-cameroonGreen" required>
+                    </div>
+                    
+                    <div class="flex items-center">
+                        <input type="checkbox" id="acceptTerms" class="h-4 w-4 text-cameroonGreen focus:ring-cameroonGreen border-gray-300 rounded" required>
+                        <label for="acceptTerms" class="ml-2 block text-sm text-gray-700">
+                            J'accepte les <a href="#" class="text-cameroonGreen hover:underline" data-page="conditions">conditions d'utilisation</a>
+                        </label>
+                    </div>
+                    
+                    <button type="submit" class="w-full bg-cameroonGreen text-white py-2 rounded-md hover:bg-green-700 transition-colors">
+                        Créer mon compte
+                    </button>
+                </form>
+                
+                <div class="mt-4 text-center text-sm">
+                    <p>Vous avez déjà un compte? <a href="#" class="text-cameroonGreen font-medium hover:underline switch-to-login">Connectez-vous</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Profile Modal -->
+    <div class="modal fade fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden" id="profileModal">
+        <div class="bg-white rounded-lg w-full max-w-md mx-4">
+            <div class="p-6">
+                <div class="flex justify-between items-center mb-6">
+                    <h3 class="text-xl font-bold text-cameroonGreen">Mon compte</h3>
+                    <button class="close-modal text-gray-500 hover:text-gray-700">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                
+                <div class="space-y-4">
+                    <div class="flex items-center">
+                        <div class="w-16 h-16 rounded-full bg-gray-200 flex items-center justify-center text-2xl text-gray-500">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="ml-4">
+                            <h4 class="font-semibold text-lg" id="profileFullName"></h4>
+                            <p class="text-gray-600 text-sm" id="profileEmail"></p>
+                        </div>
+                    </div>
+                    
+                    <div class="border-t border-gray-200 pt-4">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="text-gray-600">Téléphone:</span>
+                            <span class="font-medium" id="profilePhone"></span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-600">Date d'inscription:</span>
+                            <span class="font-medium" id="profileJoinDate"></span>
+                        </div>
+                    </div>
+                    
+                    <div class="border-t border-gray-200 pt-4">
+                       
+                    
+                        <button id="logoutBtnModal" class="w-full text-left py-2 px-3 rounded hover:bg-gray-100 flex items-center text-red-500">
+                            <i class="fas fa-sign-out-alt mr-3"></i>
+                            <span>Déconnexion</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loan Application Modal -->
+    <div class="modal fade fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden" id="loanModal">
+        <div class="bg-white rounded-lg w-full max-w-2xl mx-4 max-h-[90vh] overflow-y-auto">
+            <div class="p-6">
+                <div class="flex justify-between items-center mb-6">
+                    <h3 class="text-xl font-bold text-cameroonGreen" id="loanModalTitle">Demande de prêt</h3>
+                    <button class="close-modal text-gray-500 hover:text-gray-700">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                
+                <div class="form-step active" id="step1">
+                    <h4 class="text-lg font-semibold mb-4">Conditions pour obtenir le prêt</h4>
+                    <ul class="list-disc pl-5 space-y-2 mb-6">
+                        <li>Être âgé entre 21 et 65 ans</li>
+                        <li>Posséder une pièce d'identité valide (CNI, passeport ou permis de conduire)</li>
+                        <li>Avoir un compte mobile money actif</li>
+                        <li>Accepter les frais de caution de <span id="feeAmount" class="font-semibold"></span> FCFA</li>
+                        <li>Rembourser dans les délais impartis (7, 14, 30 60 ou 365 jours)</li>
+                    </ul>
+                    <div class="bg-blue-50 border-l-4 border-blue-400 p-4 rounded">
+                        <div class="flex">
+                            <div class="flex-shrink-0">
+                                <i class="fas fa-info-circle text-blue-400"></i>
+                            </div>
+                            <div class="ml-3">
+                                <p class="text-sm text-blue-700">
+                                    Vous recevrez <strong><span id="loanAmount"></span> FCFA</strong> sur votre compte mobile money après validation de votre demande.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-step" id="step2">
+                    <h4 class="text-lg font-semibold mb-4">Informations personnelles</h4>
+                    <form id="personalInfoForm">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Nom complet</label>
+                                <input type="text" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-cameroonGreen" id="fullName" required>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Date de naissance</label>
+                                <input type="date" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-cameroonGreen" id="birthDate" required>
+                            </div>
+                        </div>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Sexe</label>
+                                <select class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-cameroonGreen" id="gender" required>
+                                    <option value="">Sélectionner</option>
+                                    <option value="male">Masculin</option>
+                                    <option value="female">Féminin</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Numéro de téléphone</label>
+                                <input type="tel" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-cameroonGreen" id="phoneNumber" required>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Adresse email</label>
+                            <input type="email" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-cameroonGreen" id="email" required>
+                        </div>
+                    </form>
+                </div>
+                
+                <div class="form-step" id="step3">
+                    <h4 class="text-lg font-semibold mb-4">Pièce d'identité</h4>
+                    <p class="mb-6">Veuillez télécharger les photos de votre pièce d'identité (recto et verso)</p>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Recto de la pièce d'identité</label>
+                            <div class="upload-area border-2 border-dashed rounded-lg p-6 text-center cursor-pointer" id="rectoUpload">
+                                <i class="fas fa-camera text-3xl text-cameroonGreen mb-2"></i>
+                                <p class="text-gray-500">Cliquez pour télécharger</p>
+                                <input type="file" id="rectoInput" accept="image/*" class="hidden">
+                                <img id="rectoPreview" class="mt-2 mx-auto max-h-40 hidden rounded">
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Verso de la pièce d'identité</label>
+                            <div class="upload-area border-2 border-dashed rounded-lg p-6 text-center cursor-pointer" id="versoUpload">
+                                <i class="fas fa-camera text-3xl text-cameroonGreen mb-2"></i>
+                                <p class="text-gray-500">Cliquez pour télécharger</p>
+                                <input type="file" id="versoInput" accept="image/*" class="hidden">
+                                <img id="versoPreview" class="mt-2 mx-auto max-h-40 hidden rounded">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-step" id="step4">
+                    <h4 class="text-lg font-semibold mb-4">Paiement des frais de caution</h4>
+                    <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 rounded mb-6">
+                        <div class="flex">
+                            <div class="flex-shrink-0">
+                                <i class="fas fa-exclamation-circle text-yellow-400"></i>
+                            </div>
+                            <div class="ml-3">
+                                <p class="text-sm text-yellow-700">
+                                    Pour finaliser votre demande, veuillez payer les frais de caution de <strong><span id="finalFeeAmount"></span> FCFA</strong>.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <p class="mb-2">Le montant du prêt de <strong><span id="finalLoanAmount"></span> FCFA</strong> vous sera transféré après validation de votre dossier.</p>
+
+                    
+                    <div class="text-center">
+                        <button id="payButton" class="bg-cameroonGreen text-white font-bold px-6 py-3 rounded-md hover:bg-green-700 transition-colors">
+                            Payer les frais
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="form-step" id="step5">
+                    <div class="text-center py-6">
+                        <i class="fas fa-check-circle text-5xl text-green-500 mb-4"></i>
+                        <h4 class="text-xl font-bold mb-3">Demande soumise avec succès!</h4>
+                        <p class="mb-6">
+                            Vous allez recevoir la somme de <strong><span id="successLoanAmount"></span> FCFA</strong> dans votre portefeuille mobile <strong><span id="successPhoneNumber"></span></strong> dans les plus brefs délais.
+                        </p>
+                        <button class="close-modal bg-cameroonGreen text-white font-bold px-6 py-2 rounded-md hover:bg-green-700 transition-colors">
+                            Retour au tableau de bord
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="flex justify-between pt-6 mt-6 border-t border-gray-200">
+                    <button id="prevBtn" class="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50 hidden">
+                        Précédent
+                    </button>
+                    <button id="nextBtn" class="ml-auto px-4 py-2 bg-cameroonGreen text-white rounded-md hover:bg-green-700">
+                        Suivant
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+       <!-- Campay SDK -->
+    <script src="https://www.campay.net/sdk/js?app-id=t4-CJchgj_KuCtVpLMKZdXJBuxwi-8tniwJnD_jhPHow1doXKZx4BoSWU2Ib5uLO34wRiAf3gADlFnEAYKdZoQ"></script>
+    <script>
+       // Initialize application
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize variables
+    let currentUser = null;
+    let currentLoanAmount = 0;
+    let currentFeeAmount = 0;
+    let currentStep = 1;
+    let testimonialPosition = 0;
+    const testimonialCount = 7;
+    
+    // Check login status
+    function checkLoginStatus() {
+        const loggedInUser = localStorage.getItem('loggedInUser');
+        if (loggedInUser) {
+            currentUser = JSON.parse(loggedInUser);
+            updateUIForLoggedInUser();
+            return true;
+        }
+        updateUIForLoggedOutUser();
+        return false;
+    }
+  
+// Update UI for logged in user
+function updateUIForLoggedInUser() {
+    // Hide auth buttons and show profile/history buttons
+    document.getElementById('mobileAuthButtons').classList.add('hidden');
+    document.getElementById('profileButton').classList.remove('hidden');
+    document.getElementById('transactionHistoryBtn').classList.remove('hidden');
+    
+    // Update profile name
+    document.getElementById('profileName').textContent = currentUser.firstName;
+    
+    // Enable loan application buttons
+    document.querySelectorAll('.btn-select-loan').forEach(btn => {
+        btn.disabled = false;
+        btn.classList.remove('opacity-50', 'cursor-not-allowed');
+    });
+    
+    // Hide login prompt if on loan page
+    if (document.getElementById('pret').classList.contains('active')) {
+        document.getElementById('loginRequired').style.display = 'none';
+        document.getElementById('loanOffers').style.display = 'block';
+    }
+}
+
+
+// Update UI for logged out user
+function updateUIForLoggedOutUser() {
+    // Show auth buttons and hide profile/history buttons
+    document.getElementById('mobileAuthButtons').classList.remove('hidden');
+    document.getElementById('profileButton').classList.add('hidden');
+    document.getElementById('transactionHistoryBtn').classList.add('hidden');
+    
+    // Disable loan application buttons
+    document.querySelectorAll('.btn-select-loan').forEach(btn => {
+        btn.disabled = true;
+        btn.classList.add('opacity-50', 'cursor-not-allowed');
+    });
+    
+    // Show login prompt if on loan page
+    if (document.getElementById('pret').classList.contains('active')) {
+        document.getElementById('loginRequired').style.display = 'block';
+        document.getElementById('loanOffers').style.display = 'none';
+    }
+}
+    // Update dashboard
+    function updateDashboard() {
+        if (!currentUser) return;
+        
+        document.getElementById('welcomeName').textContent = currentUser.firstName;
+        document.getElementById('availableBalance').textContent = currentUser.balance.toLocaleString() + ' FCFA';
+        
+        // Find active loans
+        const loans = JSON.parse(localStorage.getItem('loans')) || [];
+        const userLoans = loans.filter(loan => loan.userId === currentUser.id && loan.status === 'approved');
+        
+        // Update current loan and next payment
+        if (userLoans.length > 0) {
+            const activeLoan = userLoans[0];
+            document.getElementById('currentLoan').textContent = activeLoan.amount.toLocaleString() + ' FCFA';
+            
+            const nextPaymentDate = new Date(activeLoan.applicationDate);
+            nextPaymentDate.setDate(nextPaymentDate.getDate() + activeLoan.duration);
+            document.getElementById('nextPayment').textContent = nextPaymentDate.toLocaleDateString();
+        } else {
+            document.getElementById('currentLoan').textContent = '0 FCFA';
+            document.getElementById('nextPayment').textContent = 'Aucun';
+        }
+        
+        // Update loan history
+        const historyContainer = document.getElementById('loanHistory');
+        historyContainer.innerHTML = '';
+        
+        const userLoanHistory = loans.filter(loan => loan.userId === currentUser.id);
+        
+        if (userLoanHistory.length === 0) {
+            historyContainer.innerHTML = '<p class="text-gray-500">Aucun historique de prêt disponible</p>';
+        } else {
+            userLoanHistory.forEach(loan => {
+                const loanDate = new Date(loan.applicationDate);
+                const statusClass = loan.status === 'approved' ? 'bg-green-100 text-green-800' : 
+                                    loan.status === 'pending' ? 'bg-yellow-100 text-yellow-800' : 'bg-red-100 text-red-800';
+                const statusText = loan.status === 'approved' ? 'Approuvé' : 
+                                 loan.status === 'pending' ? 'En attente' : 'Rejeté';
+                
+                const loanItem = document.createElement('div');
+                loanItem.className = 'flex justify-between items-center p-3 border-b border-gray-200';
+                loanItem.innerHTML = `
+                    <div>
+                        <div class="font-medium">${loan.amount.toLocaleString()} FCFA</div>
+                        <div class="text-sm text-gray-500">${loanDate.toLocaleDateString()}</div>
+                    </div>
+                    <span class="px-2 py-1 text-xs rounded-full ${statusClass}">${statusText}</span>
+                `;
+                historyContainer.appendChild(loanItem);
+            });
+        }
+    }
+    
+    // Show page
+    function showPage(pageId) {
+        // Hide all pages
+        document.querySelectorAll('.page').forEach(page => {
+            page.classList.remove('active');
+        });
+        
+        // Show requested page
+        const targetPage = document.getElementById(pageId);
+        if (targetPage) {
+            targetPage.classList.add('active');
+            
+            // Update dashboard if showing dashboard
+            if (pageId === 'dashboard' && currentUser) {
+                updateDashboard();
+            }
+            
+            // Show/hide login prompt on loan page
+            if (pageId === 'pret') {
+                if (!currentUser) {
+                    document.getElementById('loginRequired').style.display = 'block';
+                } else {
+                    document.getElementById('loginRequired').style.display = 'none';
+                }
+            }
+        }
+        
+        // Update active nav tabs
+        document.querySelectorAll('.nav-tab').forEach(tab => {
+            tab.classList.remove('active');
+            if (tab.getAttribute('data-page') === pageId) {
+                tab.classList.add('active');
+            }
+        });
+    }
+    
+    // Show modal
+    function showModal(modalId) {
+        document.getElementById(modalId).classList.remove('hidden');
+    }
+    
+    // Hide modal
+    function hideModal(modalId) {
+        document.getElementById(modalId).classList.add('hidden');
+    }
+    
+    // Login user
+    function loginUser(email, password) {
+        const users = JSON.parse(localStorage.getItem('users')) || [];
+        const user = users.find(u => u.email === email && u.password === password);
+        
+        if (!user) {
+            alert('Email ou mot de passe incorrect');
+            return false;
+        }
+        
+        currentUser = user;
+        localStorage.setItem('loggedInUser', JSON.stringify(user));
+        updateUIForLoggedInUser();
+        hideModal('loginModal');
+        
+        // Show dashboard if on pret page
+        if (document.getElementById('pret').classList.contains('active')) {
+            showPage('dashboard');
+        }
+        
+        return true;
+    }
+    
+    // Register user
+    function registerUser(firstName, lastName, email, phone, password) {
+        const users = JSON.parse(localStorage.getItem('users')) || [];
+        
+        if (users.some(u => u.email === email)) {
+            alert('Un compte avec cet email existe déjà');
+            return false;
+        }
+        
+        const newUser = {
+            id: Date.now().toString(),
+            firstName,
+            lastName,
+            email,
+            phone,
+            password,
+            balance: 0,
+            joinDate: new Date().toISOString(),
+            loans: []
+        };
+        
+        users.push(newUser);
+        localStorage.setItem('users', JSON.stringify(users));
+        
+        // Auto-login after registration
+        currentUser = newUser;
+        localStorage.setItem('loggedInUser', JSON.stringify(newUser));
+        updateUIForLoggedInUser();
+        hideModal('registerModal');
+        
+        // Show dashboard if on pret page
+        if (document.getElementById('pret').classList.contains('active')) {
+            showPage('dashboard');
+        }
+        
+        return true;
+    }
+    
+    // Logout user
+    function logoutUser() {
+        currentUser = null;
+        localStorage.removeItem('loggedInUser');
+        updateUIForLoggedOutUser();
+        hideModal('profileModal');
+        showPage('accueil');
+    }
+    
+    // Initialize Campay payment
+    function initializeCampayPayment() {
+        if (typeof campay === 'undefined') {
+            alert('Le service de paiement n\'est pas disponible pour le moment');
+            return false;
+        }
+        
+        campay.options({
+            payButtonId: "payButton",
+            description: `Frais de caution pour prêt de ${currentLoanAmount} FCFA`,
+            amount: currentFeeAmount.toString(),
+            currency: "XAF",
+            externalReference: `loan_${Date.now()}`,
+            redirectUrl: ""
+        });
+        
+        campay.onSuccess = function(data) {
+            createLoanApplication();
+            showLoanApplicationSuccess();
+        };
+        
+        campay.onFail = function(data) {
+            alert('Paiement échoué: ' + (data.message || 'Erreur inconnue'));
+        };
+        
+        campay.onModalClose = function(data) {
+            console.log('Modal de paiement fermé');
+        };
+        
+        return true;
+    }
+    
+    // Create loan application
+    function createLoanApplication() {
+        const loans = JSON.parse(localStorage.getItem('loans')) || [];
+        
+        const newLoan = {
+            id: Date.now().toString(),
+            userId: currentUser.id,
+            amount: currentLoanAmount,
+            fee: currentFeeAmount,
+            status: 'pending',
+            applicationDate: new Date().toISOString(),
+            duration: 30 // Default duration in days
+        };
+        
+        loans.push(newLoan);
+        localStorage.setItem('loans', JSON.stringify(loans));
+        
+        // Update user's loans
+        const users = JSON.parse(localStorage.getItem('users')) || [];
+        const userIndex = users.findIndex(u => u.id === currentUser.id);
+        if (userIndex !== -1) {
+            if (!users[userIndex].loans) users[userIndex].loans = [];
+            users[userIndex].loans.push(newLoan.id);
+            localStorage.setItem('users', JSON.stringify(users));
+            localStorage.setItem('loggedInUser', JSON.stringify(users[userIndex]));
+            currentUser = users[userIndex];
+        }
+        
+        updateDashboard();
+    }
+    
+    // Show loan application success
+    function showLoanApplicationSuccess() {
+        document.getElementById('step4').classList.remove('active');
+        document.getElementById('step5').classList.add('active');
+        document.getElementById('successLoanAmount').textContent = currentLoanAmount.toLocaleString();
+        document.getElementById('successPhoneNumber').textContent = currentUser.phone;
+        
+        // Hide navigation buttons
+        document.getElementById('prevBtn').classList.add('hidden');
+        document.getElementById('nextBtn').classList.add('hidden');
+    }
+    
+    // Validate personal info form
+    function validatePersonalInfo() {
+        const fullName = document.getElementById('fullName').value;
+        const birthDate = document.getElementById('birthDate').value;
+        const gender = document.getElementById('gender').value;
+        const phoneNumber = document.getElementById('phoneNumber').value;
+        const email = document.getElementById('email').value;
+        
+        if (!fullName || !birthDate || !gender || !phoneNumber || !email) {
+            alert('Veuillez remplir tous les champs');
+            return false;
+        }
+        
+        // Calculate age
+        const birthDateObj = new Date(birthDate);
+        const ageDiff = Date.now() - birthDateObj.getTime();
+        const ageDate = new Date(ageDiff);
+        const age = Math.abs(ageDate.getUTCFullYear() - 1970);
+        
+        if (age < 21 || age > 65) {
+            alert('Vous devez avoir entre 21 et 65 ans pour faire une demande de prêt');
+            return false;
+        }
+        
+        return true;
+    }
+    
+    // Validate ID upload
+    function validateIdUpload() {
+        const rectoInput = document.getElementById('rectoInput');
+        const versoInput = document.getElementById('versoInput');
+        
+        if (!rectoInput.files.length || !versoInput.files.length) {
+            alert('Veuillez télécharger les deux côtés de votre pièce d\'identité');
+            return false;
+        }
+        
+        return true;
+    }
+    
+    // Initialize testimonial slider
+    function initTestimonialSlider() {
+        const track = document.getElementById('testimonial-track');
+        const prevBtn = document.querySelector('.testimonial-prev');
+        const nextBtn = document.querySelector('.testimonial-next');
+        const testimonialWidth = document.querySelector('.testimonial-slider .w-full').offsetWidth;
+        
+        function updatePosition() {
+            track.style.transform = `translateX(-${testimonialPosition * testimonialWidth}px)`;
+        }
+        
+        prevBtn.addEventListener('click', function() {
+            if (testimonialPosition > 0) {
+                testimonialPosition--;
+                updatePosition();
+            }
+        });
+        
+        nextBtn.addEventListener('click', function() {
+            if (testimonialPosition < testimonialCount - 1) {
+                testimonialPosition++;
+                updatePosition();
+            }
+        });
+    }
+    
+    // Initialize FAQ accordion
+    function initFAQAccordion() {
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', function() {
+                const answer = this.nextElementSibling;
+                const icon = this.querySelector('i');
+                
+                if (answer.classList.contains('hidden')) {
+                    answer.classList.remove('hidden');
+                    icon.classList.add('rotate-180');
+                } else {
+                    answer.classList.add('hidden');
+                    icon.classList.remove('rotate-180');
+                }
+            });
+        });
+    }
+    
+    // Initialize loan modal
+    function initLoanModal() {
+        document.querySelectorAll('.btn-select-loan').forEach(btn => {
+            btn.addEventListener('click', function() {
+                if (!currentUser) {
+                    showModal('loginModal');
+                    return;
+                }
+                
+                const card = this.closest('.loan-card');
+                currentLoanAmount = parseInt(card.getAttribute('data-amount'));
+                currentFeeAmount = parseInt(card.getAttribute('data-fee'));
+                
+                // Update modal display
+                document.getElementById('loanAmount').textContent = currentLoanAmount.toLocaleString();
+                document.getElementById('feeAmount').textContent = currentFeeAmount.toLocaleString();
+                document.getElementById('finalLoanAmount').textContent = currentLoanAmount.toLocaleString();
+                document.getElementById('finalFeeAmount').textContent = currentFeeAmount.toLocaleString();
+                
+                // Pre-fill user info
+                if (currentUser) {
+                    document.getElementById('fullName').value = `${currentUser.firstName} ${currentUser.lastName}`;
+                    document.getElementById('phoneNumber').value = currentUser.phone;
+                    document.getElementById('email').value = currentUser.email;
+                }
+                
+                // Reset modal steps
+                document.querySelectorAll('.form-step').forEach(step => {
+                    step.classList.remove('active');
+                });
+                document.getElementById('step1').classList.add('active');
+                document.getElementById('prevBtn').classList.add('hidden');
+                document.getElementById('nextBtn').classList.remove('hidden');
+                currentStep = 1;
+                
+                showModal('loanModal');
+            });
+        });
+        
+        // Form navigation
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        
+        nextBtn.addEventListener('click', function() {
+            if (currentStep === 1) {
+                // Move to step 2
+                document.getElementById('step1').classList.remove('active');
+                document.getElementById('step2').classList.add('active');
+                prevBtn.classList.remove('hidden');
+                currentStep = 2;
+            } else if (currentStep === 2) {
+                // Validate and move to step 3
+                if (validatePersonalInfo()) {
+                    document.getElementById('step2').classList.remove('active');
+                    document.getElementById('step3').classList.add('active');
+                    currentStep = 3;
+                }
+            } else if (currentStep === 3) {
+                // Validate and move to payment
+                if (validateIdUpload()) {
+                    document.getElementById('step3').classList.remove('active');
+                    document.getElementById('step4').classList.add('active');
+                    nextBtn.classList.add('hidden');
+                    initializeCampayPayment();
+                    currentStep = 4;
+                }
+            }
+        });
+        
+        prevBtn.addEventListener('click', function() {
+            if (currentStep === 2) {
+                // Back to step 1
+                document.getElementById('step2').classList.remove('active');
+                document.getElementById('step1').classList.add('active');
+                this.classList.add('hidden');
+                currentStep = 1;
+            } else if (currentStep === 3) {
+                // Back to step 2
+                document.getElementById('step3').classList.remove('active');
+                document.getElementById('step2').classList.add('active');
+                currentStep = 2;
+            }
+        });
+        
+        // ID upload handling
+        document.getElementById('rectoUpload').addEventListener('click', function() {
+            document.getElementById('rectoInput').click();
+        });
+        
+        document.getElementById('versoUpload').addEventListener('click', function() {
+            document.getElementById('versoInput').click();
+        });
+        
+        document.getElementById('rectoInput').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    document.getElementById('rectoPreview').src = event.target.result;
+                    document.getElementById('rectoPreview').classList.remove('hidden');
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+        
+        document.getElementById('versoInput').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    document.getElementById('versoPreview').src = event.target.result;
+                    document.getElementById('versoPreview').classList.remove('hidden');
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+    }
+    
+    // Initialize modals
+    function initModals() {
+        // Close modals when clicking close button or outside
+        document.querySelectorAll('.close-modal').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const modal = this.closest('.modal');
+                hideModal(modal.id);
+            });
+        });
+        
+        // Close modals when clicking outside
+        document.querySelectorAll('.modal').forEach(modal => {
+            modal.addEventListener('click', function(e) {
+                if (e.target === this) {
+                    hideModal(this.id);
+                }
+            });
+        });
+        
+       
+        document.getElementById('mobileLoginBtn').addEventListener('click', function(e) {
+    e.preventDefault();
+    showModal('loginModal');
+});
+
+document.getElementById('mobileRegisterBtn').addEventListener('click', function(e) {
+    e.preventDefault();
+    showModal('registerModal');
+});
+
+// Also add this for the "Demander" tab buttons
+document.querySelectorAll('[data-page="pret"]').forEach(btn => {
+    btn.addEventListener('click', function(e) {
+        if (!currentUser) {
+            e.preventDefault();
+            showModal('loginModal');
+        }
+    });
+});
+        
+        // Profile button
+        document.getElementById('profileBtn').addEventListener('click', function() {
+            if (currentUser) {
+                document.getElementById('profileFullName').textContent = `${currentUser.firstName} ${currentUser.lastName}`;
+                document.getElementById('profileEmail').textContent = currentUser.email;
+                document.getElementById('profilePhone').textContent = currentUser.phone;
+                
+                const joinDate = new Date(currentUser.joinDate);
+                document.getElementById('profileJoinDate').textContent = joinDate.toLocaleDateString();
+                
+                showModal('profileModal');
+            }
+        });
+        
+        // Switch to register from login
+        document.querySelector('.switch-to-register').addEventListener('click', function(e) {
+            e.preventDefault();
+            hideModal('loginModal');
+            showModal('registerModal');
+        });
+        
+        // Switch to login from register
+        document.querySelector('.switch-to-login').addEventListener('click', function(e) {
+            e.preventDefault();
+            hideModal('registerModal');
+            showModal('loginModal');
+        });
+        
+        // Login form submission
+        document.getElementById('loginFormModal').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = document.getElementById('loginEmailModal').value;
+            const password = document.getElementById('loginPasswordModal').value;
+            loginUser(email, password);
+        });
+        
+        // Register form submission
+        document.getElementById('registerFormModal').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const firstName = document.getElementById('registerFirstName').value;
+            const lastName = document.getElementById('registerLastName').value;
+            const email = document.getElementById('registerEmail').value;
+            const phone = document.getElementById('registerPhone').value;
+            const password = document.getElementById('registerPassword').value;
+            const confirmPassword = document.getElementById('registerConfirmPassword').value;
+            
+            if (password !== confirmPassword) {
+                alert('Les mots de passe ne correspondent pas');
+                return;
+            }
+            
+            registerUser(firstName, lastName, email, phone, password);
+        });
+        
+        // Logout button
+        document.getElementById('logoutBtn').addEventListener('click', function() {
+            logoutUser();
+        });
+        
+        // Logout button in modal
+        document.getElementById('logoutBtnModal').addEventListener('click', function() {
+            logoutUser();
+        });
+    }
+    
+    // Initialize navigation
+    function initNavigation() {
+        // Nav tabs
+        document.querySelectorAll('.nav-tab').forEach(tab => {
+            tab.addEventListener('click', function(e) {
+                e.preventDefault();
+                const pageId = this.getAttribute('data-page');
+                showPage(pageId);
+            });
+        });
+        
+        // Other navigation links
+        document.querySelectorAll('[data-page]').forEach(link => {
+            if (!link.classList.contains('nav-tab')) {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const pageId = this.getAttribute('data-page');
+                    showPage(pageId);
+                });
+            }
+        });
+    }
+    
+    // Initialize scroll animations
+    function initScrollAnimations() {
+        const animateOnScroll = function() {
+            const elements = document.querySelectorAll('.animate__animated');
+            
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.2;
+                
+                if (elementPosition < screenPosition) {
+                    const animation = element.getAttribute('data-animation');
+                    element.classList.add(animation);
+                }
+            });
+        };
+        
+        window.addEventListener('scroll', animateOnScroll);
+        animateOnScroll(); // Run once on load
+    }
+    
+    // Initialize particle animation
+    function initParticles() {
+        if (typeof particlesJS !== 'undefined') {
+            particlesJS('particles-js', {
+                "particles": {
+                    "number": {
+                        "value": 80,
+                        "density": {
+                            "enable": true,
+                            "value_area": 800
+                        }
+                    },
+                    "color": {
+                        "value": "#2c786c"
+                    },
+                    "shape": {
+                        "type": "circle",
+                        "stroke": {
+                            "width": 0,
+                            "color": "#000000"
+                        },
+                        "polygon": {
+                            "nb_sides": 5
+                        }
+                    },
+                    "opacity": {
+                        "value": 0.5,
+                        "random": false,
+                        "anim": {
+                            "enable": false,
+                            "speed": 1,
+                            "opacity_min": 0.1,
+                            "sync": false
+                        }
+                    },
+                    "size": {
+                        "value": 3,
+                        "random": true,
+                        "anim": {
+                            "enable": false,
+                            "speed": 40,
+                            "size_min": 0.1,
+                            "sync": false
+                        }
+                    },
+                    "line_linked": {
+                        "enable": true,
+                        "distance": 150,
+                        "color": "#2c786c",
+                        "opacity": 0.4,
+                        "width": 1
+                    },
+                    "move": {
+                        "enable": true,
+                        "speed": 2,
+                        "direction": "none",
+                        "random": false,
+                        "straight": false,
+                        "out_mode": "out",
+                        "bounce": false,
+                        "attract": {
+                            "enable": false,
+                            "rotateX": 600,
+                            "rotateY": 1200
+                        }
+                    }
+                },
+                "interactivity": {
+                    "detect_on": "canvas",
+                    "events": {
+                        "onhover": {
+                            "enable": true,
+                            "mode": "grab"
+                        },
+                        "onclick": {
+                            "enable": true,
+                            "mode": "push"
+                        },
+                        "resize": true
+                    },
+                    "modes": {
+                        "grab": {
+                            "distance": 140,
+                            "line_linked": {
+                                "opacity": 1
+                            }
+                        },
+                        "bubble": {
+                            "distance": 400,
+                            "size": 40,
+                            "duration": 2,
+                            "opacity": 8,
+                            "speed": 3
+                        },
+                        "repulse": {
+                            "distance": 200,
+                            "duration": 0.4
+                        },
+                        "push": {
+                            "particles_nb": 4
+                        },
+                        "remove": {
+                            "particles_nb": 2
+                        }
+                    }
+                },
+                "retina_detect": true
+            });
+        }
+    }
+    
+    // Initialize everything
+    function init() {
+        // Check login status first
+        checkLoginStatus();
+        
+        // Initialize components
+        initTestimonialSlider();
+        initFAQAccordion();
+        initLoanModal();
+        initModals();
+        initNavigation();
+        initScrollAnimations();
+        initParticles();
+        
+        // Show home page by default
+        showPage('accueil');
+    }
+    
+    // Start the application
+    init();
+});
+    </script>
+   
+</body>
+</html>
